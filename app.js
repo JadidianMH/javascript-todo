@@ -1,5 +1,5 @@
 import {add, edit, getList, getNextId, remove} from "./module/js/list_local_storage_manager.js";
-import { getRoot, showList, updateHTML , loadHTMl } from "./module/js/html_manager.js";
+import { showList, updateHTML , loadHTMl } from "./module/js/html_manager.js";
 
 let list = getList();
 
