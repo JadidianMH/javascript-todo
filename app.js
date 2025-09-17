@@ -2,7 +2,6 @@ import {add, edit, getList, getNextId, remove} from "./module/js/list_local_stor
 import { getRoot, showList, updateHTML , loadHTMl } from "./module/js/html_manager.js";
 
 let list = getList();
-const root = getRoot();
 
 
 
