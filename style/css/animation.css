@@ -1,0 +1,12 @@
+.going-to-die {
+    animation: closing .3s cubic-bezier(1,.06,0,.42);
+}
+
+@keyframes closing {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
