@@ -11,6 +11,7 @@ async function renderTable() {
     const bar = await loadHTMl('./module/html/bar.html');
     updateHTML(bar + html);
     console.log('renderTable');
+    document.title = 'my undone jobes';
 }
 
 async function renderForm(mode ,id = null) {
@@ -19,11 +20,17 @@ async function renderForm(mode ,id = null) {
 
     updateHTML(bar + html);
 
+    document.title = 'loading ...';
+
     const submitBtn = document.querySelector('#submit-btn');
     const hiddenInput = document.querySelector('#hidden');
     if (submitBtn && mode === 'add') {
         submitBtn.id = 'add-todo';
+	document.title = 'adding a new job';
     } else if (submitBtn && mode === 'edit') {
+
+	document.title = 'editing existing job';
+
         id = Number(id);
         list = getList();
         const nameField = await document.querySelector('#name');

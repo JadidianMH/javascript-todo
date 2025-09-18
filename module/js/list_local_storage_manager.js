@@ -31,6 +31,7 @@ export function edit(id, object) {
 }
 
 export function add(item) {
+    if (!list) list = [];
     list.push(item);
     localStorage.setItem('list', JSON.stringify(list));
 }
@@ -41,7 +42,7 @@ export function remove(id) {
 }
 
 export function getNextId(list) {
-    if (list.length === 0) return 1;
+    if (!list || list === null || list.length === 0) return 1;
     const ids = list.map(item => item.id);
     return Math.max(...ids) + 1;
 }
