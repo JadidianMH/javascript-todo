@@ -3,11 +3,13 @@ import { showList, updateHTML , loadHTMl } from "./module/js/html_manager.js";
 
 let list = getList();
 
-
+let sortBy = localStorage.getItem('sortby') ?? 'id';
+let sortOrder = localStorage.getItem('sortorder') ?? 'asc';
+let currentPage = localStorage.getItem('currentPage') ?? 0;
 
 async function renderTable() {
     document.body.classList = localStorage.getItem('current_theme') + '-theme';
-    const html = showList(list);
+    const html = showList(list, sortBy, sortOrder);
     const bar = await loadHTMl('./module/html/bar.html');
     updateHTML(bar + html);
     console.log('renderTable');
@@ -105,6 +107,7 @@ document.body.addEventListener('click', (e) => {
             done: false,
             name: name,
             description: description,
+            like: false,
         }
 
         add(object);
@@ -125,6 +128,33 @@ document.body.addEventListener('click', (e) => {
         renderTable();
 
     }
+
+    if (target.classList.contains('sort-btn')) {
+        const newsortBy = target.dataset.sort;
+
+        if (newsortBy === sortBy) {
+            sortOrder = (sortOrder === 'asc' ? 'desc' : 'asc');
+        }
+
+        sortBy = newsortBy;
+
+        localStorage.setItem('sortby', sortBy);
+        localStorage.setItem('sortorder', sortOrder);
+
+        renderTable();
+        console.log('sorted by', sortBy);
+    }
+
+    if (target.classList.contains('like-btn')) {
+        const id = target.dataset.id;
+        const item = list.find(x => x.id == id);
+        if (item) {
+            item.like = !item.like;
+        }
+        edit(id, item);
+        renderTable();
+    }
+
 
     if (target.id === 'theme-switcher') {
         themeSwitch();
