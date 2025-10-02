@@ -107,6 +107,7 @@ document.body.addEventListener('click', (e) => {
             done: false,
             name: name,
             description: description,
+            date: new Date(),
             like: false,
         }
 

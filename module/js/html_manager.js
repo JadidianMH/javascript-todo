@@ -9,7 +9,7 @@ export function updateHTML(innerHTML) {
 }
 
 export function showList(list, sortBy = 'id', sortOrder = 'asc', page=0) {
-    if (!list || list.length === 0) return '<table>there is no list to show. click to add a todo</table><button class="add-btn fa fa-add">add</button>';
+    if (!list || list.length === 0) return '<table>there is no list to show. click to add a todo</table><button class="add-btn fa fa-add"></button>';
     let table = '<table>';
 
     if (sortBy) {
