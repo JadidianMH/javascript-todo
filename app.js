@@ -9,7 +9,7 @@ let currentPage = localStorage.getItem('currentPage') ?? 0;
 
 async function renderTable() {
     document.body.classList = localStorage.getItem('current_theme') + '-theme';
-    const html = showList(list, sortBy, sortOrder);
+    const html = showList(list, sortBy, sortOrder, currentPage);
     const bar = await loadHTMl('./module/html/bar.html');
     updateHTML(bar + html);
     console.log('renderTable');
@@ -152,6 +152,12 @@ document.body.addEventListener('click', (e) => {
             item.like = !item.like;
         }
         edit(id, item);
+        renderTable();
+    }
+
+    if (target.classList.contains('page-btn')) {
+        currentPage = Number(target.dataset.page);
+        console.log('currentPage', currentPage);
         renderTable();
     }
 

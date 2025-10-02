@@ -20,9 +20,11 @@ export function showList(list, sortBy = 'id', sortOrder = 'asc', page=0) {
         });
     }
 
-    const sizeToShow = 5;
+    const sizeToShow = 3;
     let firstIndex = page * sizeToShow;
     let lastIndex = (page + 1) * sizeToShow;
+
+    const totalPages = Math.ceil(list.length / sizeToShow);
 
     list = [...list.slice(firstIndex, lastIndex)];
 
@@ -34,7 +36,7 @@ export function showList(list, sortBy = 'id', sortOrder = 'asc', page=0) {
         const icon = (sortBy === header)
             ? (sortOrder === "asc" ? "fa-angle-down" : "fa-angle-up")
             : "fa-angle-down";
-        row += `<th>${header}<button data-sort="${header}" class="sort-btn fa ${icon}"></button></th>`;
+        row += `<th><span>${header}</span><button data-sort="${header}" class="sort-btn fa ${icon}"></button></th>`;
     }
     row += '<th>actions</th></tr>';
     table += row;
@@ -58,14 +60,18 @@ export function showList(list, sortBy = 'id', sortOrder = 'asc', page=0) {
         }
         row += `
             <td class="actions">
-                <button class="edit-btn fa fa-pencil" data-id="${item.id}">edit</button>
-                <button class="remove-btn fa fa-trash" data-id="${item.id}">remove</button>
+                <button class="edit-btn fa fa-pencil" data-id="${item.id}"></button>
+                <button class="remove-btn fa fa-trash" data-id="${item.id}"></button>
             </td>
         </tr>`;
         table += row;
     }
 
-    table += '</table><button class="add-btn fa fa-add">add</button>';
+    table += `</table><div class="bar"><button class="add-btn fa fa-plus"></button><div>`;
+    for (let thisPage = 1; thisPage < totalPages; thisPage++) {
+        table += `<button class="fa page-btn" data-page=${thisPage-1}>${thisPage}</button>`;
+    }
+    table += `</div></div>`;
     return table;
 }
 
