@@ -147,7 +147,7 @@ document.body.addEventListener('click', (e) => {
 
     if (target.classList.contains('like-btn')) {
         const id = Number(target.dataset.id);
-        const item = list.find(x => x.id == id);
+        const item = list.find(x => x.id === id);
         if (item) {
             item.like = !item.like;
         }
