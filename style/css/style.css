@@ -49,7 +49,7 @@ table, .bar {
 
 table tr {
     display: grid;
-    grid-template-columns: 1fr 1.5fr 2fr 8fr 1fr auto;
+    grid-template-columns: 1.5fr 2fr 2.5fr 10fr 3fr 2fr auto;
     align-items: start;
     text-align: start;
 }
@@ -187,6 +187,11 @@ button.fa:hover {
 /* checkbox */
 button.done-checkbox {
     border-radius: 25%;
+}
+
+/* activated inputs or buttons */
+.active {
+    background: var(--hover-gradient) !important;
 }
 
 /* ------------- functionality ------------- */

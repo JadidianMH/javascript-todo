@@ -44,8 +44,11 @@ export function showList(list, sortBy = 'id', sortOrder = 'asc', page=0) {
     for (const item of list) {
         row = '<tr>';
         for (let prop in item) {
-            if (prop !== 'done' && prop !== 'like')
-                row += `<td>${item[prop]}</td>`;
+            if (prop !== 'done' && prop !== 'like') {
+                let text = String(item[prop]);
+                console.log(text);
+                row += `<td>${text.slice(0, 200)}</td>`;
+            }
             else if (prop === 'done')
                 row += `<td><button class="fa ${(item[prop] === true) ? 'fa-check' : ''} done-checkbox" data-checked=${item[prop]}></button></td>`;
             else
@@ -68,8 +71,8 @@ export function showList(list, sortBy = 'id', sortOrder = 'asc', page=0) {
     }
 
     table += `</table><div class="bar"><button class="add-btn fa fa-plus"></button><div>`;
-    for (let thisPage = 1; thisPage < totalPages; thisPage++) {
-        table += `<button class="fa page-btn" data-page=${thisPage-1}>${thisPage}</button>`;
+    for (let thisPage = 1; thisPage <= totalPages; thisPage++) {
+        table += `<button class="fa page-btn ${(thisPage -1 === page ? 'active' : '')}" data-page=${thisPage-1}>${thisPage}</button>`;
     }
     table += `</div></div>`;
     return table;

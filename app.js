@@ -102,12 +102,22 @@ document.body.addEventListener('click', (e) => {
         const name = document.querySelector('#name').value;
         const description = document.querySelector('#description').value;
 
+        const d = new Date();
+
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+
+        const formatted = `${year}/${month}/${day}`;
+        console.log(formatted);
+
+
         const object = {
             id: id,
             done: false,
             name: name,
             description: description,
-            date: new Date(),
+            date:  formatted,
             like: false,
         }
 
